@@ -7,267 +7,309 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=5.0"
     />
-    <title>Portal Compañia Cordoba</title>
+    <title>Portal Compañía Córdoba</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
 
     <style>
       :root {
-        --primary-color: #2c3e50;
-        --accent-color: #e74c3c;
-        --bg-color: #f4f7f6;
-        --card-bg: #ffffff;
-        --text-main: #333;
+        --primary: #1e293b;
+        --accent: #d4f63b;
+        --accent-gradient: linear-gradient(135deg, #cef63b 0%, #d3e910 100%);
+        --bg-gradient: radial-gradient(circle at top right, #e2e8f0, #f8fafc);
+        --glass-bg: rgba(255, 255, 255, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.3);
+        --text-dark: #0f172a;
+        --text-muted: #475569;
       }
 
-      /* SOLUCIÓN AL SCROLL TRABADO */
+      * {
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+      }
+
       html,
       body {
         margin: 0;
         padding: 0;
         width: 100%;
-        /* Evitamos el 100vh rígido que falla en Android */
-        min-height: 100%;
-        /* Evita que la página se bloquee al rebotar arriba/abajo */
-        overscroll-behavior-y: contain;
-        background-color: var(--bg-color);
+        min-height: 100vh;
+        background: var(--bg-gradient);
         font-family: "Poppins", sans-serif;
-        color: var(--text-main);
+        color: var(--text-dark);
+        overflow-x: hidden;
       }
 
-      body {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.6;
+      /* Fondo decorativo animado */
+      body::before {
+        content: "";
+        position: fixed;
+        top: -10%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: -1;
+        animation: float 10s infinite alternate;
+      }
+
+      @keyframes float {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(-50px, 50px);
+        }
       }
 
       header {
-        background-color: var(--primary-color);
+        background: var(--primary);
         color: white;
-        width: 100%;
-        padding: 2.5rem 1rem;
+        padding: 4rem 1rem;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        position: relative;
+        clip-path: ellipse(150% 100% at 50% 0%);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
 
       header h1 {
         margin: 0;
-        font-size: 1.6rem;
-        font-weight: 600;
-        letter-spacing: 0.5px;
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(to right, #ffffff, #94a3b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
 
       header p {
-        margin: 8px 0 0;
-        opacity: 0.9;
+        margin-top: 10px;
         font-weight: 300;
-        font-size: 0.9rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        opacity: 0.8;
       }
 
-      /* CONTENEDOR FLEXIBLE */
       .container {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 30px 20px;
+        max-width: 1100px;
+        margin: -40px auto 0;
+        padding: 0 20px 80px;
         display: grid;
-        /* En celulares una columna, en tablets/PC dos o tres */
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
-        /* Espacio al final para que no se pegue al footer */
-        padding-bottom: 60px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
       }
 
+      /* Efecto Glassmorphism en las tarjetas */
       .card {
-        background: var(--card-bg);
-        border-radius: 20px;
-        padding: 35px 25px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        border-radius: 24px;
+        padding: 40px 30px;
         text-align: center;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        border: 1px solid rgba(0, 0, 0, 0.03);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
       }
 
-      /* Animación suave solo en dispositivos con mouse */
-      @media (hover: hover) {
-        .card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-        }
+      .card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.9);
+        border-color: var(--accent);
       }
 
-      /* Efecto visual al tocar en celular */
-      .card:active {
-        transform: scale(0.98);
-        background-color: #fafafa;
-      }
-
-      .icon {
-        font-size: 55px;
-        margin-bottom: 15px;
-        display: block;
+      .icon-wrapper {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background: white;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
       }
 
       .card h2 {
-        color: var(--primary-color);
-        margin: 0 0 15px 0;
-        font-size: 1.3rem;
-        font-weight: 600;
+        font-size: 1.4rem;
+        color: var(--primary);
+        margin-bottom: 15px;
       }
 
       .card p {
-        color: #666;
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.6;
         margin-bottom: 30px;
         flex-grow: 1;
       }
 
       .btn {
-        display: inline-block;
         text-decoration: none;
-        background-color: var(--accent-color);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 15px;
+        background: var(--accent-gradient);
+        color: #000000; /* Aquí cambias el texto a negro */
+        padding: 14px 24px;
+        border-radius: 14px;
         font-weight: 600;
-        font-size: 0.95rem;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
+        font-size: 0.9rem;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        position: relative;
+        overflow: hidden;
       }
+
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .btn:hover::after {
+        left: 100%;
+      }
+
+      .btn:active {
+        transform: scale(0.95);
+      }
+
       .actions {
         display: flex;
         flex-direction: column;
-        gap: 30px;
-      }
-
-      .btn:hover {
-        background-color: #c0392b;
-        box-shadow: 0 6px 15px rgba(231, 76, 60, 0.3);
+        gap: 12px;
       }
 
       footer {
-        background: white;
-        width: 100%;
-        padding: 25px 15px;
+        padding: 40px 20px;
         text-align: center;
-        color: #888;
-        font-size: 0.8rem;
-        border-top: 1px solid #eee;
-        margin-top: auto; /* Empuja el footer siempre al fondo */
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-weight: 400;
       }
 
-      /* Optimizaciones de accesibilidad para los iconos */
-      .icon-comp::before {
-        content: "📅";
-      }
-      .icon-pay::before {
-        content: "📄";
-      }
-      .icon-reg::before {
-        content: "✍️";
+      /* Badge para novedades */
+      .badge {
+        display: inline-block;
+        padding: 4px 12px;
+        background: #fef3c7;
+        color: #d97706;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-bottom: 10px;
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>Portal del Funcionario Compañia Cordoba</h1>
+      <h1>Portal Compañía Córdoba</h1>
       <p>Gestión de Servicios • Popayán, Colombia</p>
     </header>
 
     <div class="container">
+      <!-- Tarjeta 1 -->
       <div class="card">
         <div>
-          <div class="icon icon-comp"></div>
+          <div class="icon-wrapper">📅</div>
           <h2>Mis Compensatorios</h2>
           <p>
             Consulta tus días disponibles, fechas disfrutadas y saldos
-            pendientes en tiempo real.
+            pendientes en tiempo real .
           </p>
         </div>
-        <!-- <a href="https://script.google.com/macros/s/AKfycbx0AKYf4aIIow95I_VoktCfMt2nF9spzMIWBNGVQJ_mVhLFQQQzEHn6gQZ1woapesusqQ/exec" class="btn" target="_blank">Consultar</a> -->
-
-
         <a
           href="https://proyectolaboral.github.io/ApiCompensatoriosGeneral/"
-         
-          
           class="btn"
           target="_blank"
           >Consultar</a
         >
       </div>
+
+      <!-- Tarjeta 2 -->
       <div class="card">
         <div>
-          <div class="icon icon-reg"></div>
-          <h2>Sorteo Compensatorios Mes Mayo 2026</h2>
+          <div class="icon-wrapper">📊</div>
+          <h2>Sorteo Mayo 2026</h2>
           <p>
-            Aqui podra consultar el listado de los funcionarios que salen a
-            compensatorio en el mes de Mayo 2026 segun sorteo.
+            Listado oficial de funcionarios que salen a compensatorio en el mes
+            de mayo según el último sorteo realizado.
           </p>
         </div>
         <a
           href="https://docs.google.com/spreadsheets/d/1TdYrGn2WFCJpgOdfCYBkCqsb0QMy1MJU6Riw-kyyMkM/edit?usp=sharing"
           class="btn"
           target="_blank"
-          >Consultar Planilla</a
+          >Ver Planilla</a
         >
       </div>
 
+      <!-- Tarjeta 3 -->
       <div class="card">
         <div>
-          <div class="icon icon-reg"></div>
-          <h2>Compensatorios Junio</h2>
+          <div class="icon-wrapper">✍️</div>
+          <h2>Compensatorios Junio 2026</h2>
           <p>
-            Regístrate aquí para participar en los turnos de compensatorios del
+            Registrate aqui para participar en los turnos de compensatorio del
             mes de junio.
           </p>
         </div>
-
         <div class="actions">
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSdnOX3dsEC2-pQoNlfyDpWCUlYHrOdNAxWG1PdGuwH-C23Ngw/viewform?usp=header"
             class="btn"
             target="_blank"
-            rel="noopener noreferrer"
+            >Registrarse Ahora</a
           >
-            Registrarse Ahora
-          </a>
-
           <a
             href="https://docs.google.com/spreadsheets/d/1fYReMUxPzjdAw0i4nmEsrFTqvSqRN0t5mT6KC8ZDqgM/edit?usp=sharing"
             class="btn"
+            style="
+              background: white;
+              color: var(--accent);
+              border: 2px solid var(--accent);
+              box-shadow: none;
+            "
             target="_blank"
-            rel="noopener noreferrer"
+            >Planilla Junio</a
           >
-            Consultar Planilla
-          </a>
         </div>
       </div>
 
+      <!-- Tarjeta 4 -->
       <div class="card">
         <div>
-          <div class="icon icon-pay"></div>
-
-          <h2>Desprendibles</h2>
-          <p>
-            Accede y descarga tus comprobantes de nómina mensuales de forma
-            segura.
-          </p>
+          <div class="icon-wrapper">💰</div>
+          <h2>Desprendible</h2>
+          <p>Descarga tus desprendibles de pago mensuales de forma segura</p>
         </div>
         <a
           href="https://inpecweb.humanoenlinea.co/HumanoEL/Ingresar.aspx?Ent=InpecWeb"
           class="btn"
           target="_blank"
-          >Ver Desprendibles</a
+          >Acceder a Recibos</a
         >
       </div>
     </div>
 
-    <footer>&copy; 2026 Sistema de Gestión - Popayán, Colombia</footer>
+    <footer>
+      &copy; 2026 Sistema de Gestión Integral <br />
+      Desarrollado para el personal de la Compañía Córdoba
+    </footer>
   </body>
 </html>
+
