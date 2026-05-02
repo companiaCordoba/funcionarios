@@ -78,13 +78,16 @@
       }
 
       header h1 {
-        margin: 0;
-        font-size: 2rem;
-        font-weight: 700;
-        background: linear-gradient(to right, #ffffff, #94a3b8);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  
+  -webkit-background-clip: text; /* Para que funcione en Chrome/Safari/Edge */
+  background-clip: text;         /* Propiedad estándar (hace feliz a VS Code) */
+  
+  -webkit-text-fill-color: transparent;
+}
 
       header p {
         margin-top: 10px;
