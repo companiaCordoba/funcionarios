@@ -322,5 +322,13 @@
       &copy; 2026 Sistema de Gestión Integral <br />
       Desarrollado para el personal de la Compañía Córdoba
     </footer>
+<!-- 2. El script va aquí, justo antes de cerrar la etiqueta </body> -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+          .then(reg => console.log('Registro de SW exitoso', reg))
+          .catch(err => console.warn('Error al registrar SW', err));
+      }
+    </script>
   </body>
 </html>
