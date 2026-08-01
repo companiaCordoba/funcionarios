@@ -78,16 +78,16 @@
       }
 
       header h1 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: 700;
-  background: linear-gradient(to right, #ffffff, #94a3b8);
-  
-  -webkit-background-clip: text; /* Para que funcione en Chrome/Safari/Edge */
-  background-clip: text;         /* Propiedad estándar (hace feliz a VS Code) */
-  
-  -webkit-text-fill-color: transparent;
-}
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        background: linear-gradient(to right, #ffffff, #94a3b8);
+
+        -webkit-background-clip: text; /* Para que funcione en Chrome/Safari/Edge */
+        background-clip: text; /* Propiedad estándar (hace feliz a VS Code) */
+
+        -webkit-text-fill-color: transparent;
+      }
 
       header p {
         margin-top: 10px;
@@ -217,14 +217,19 @@
     </style>
   </head>
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-W4PTLWLQN6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-W4PTLWLQN6"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-  gtag('config', 'G-W4PTLWLQN6');
-</script>
+    gtag("config", "G-W4PTLWLQN6");
+  </script>
   <body>
     <header>
       <h1>Portal Compañía Córdoba</h1>
@@ -249,69 +254,15 @@
           >Consultar</a
         >
       </div>
-      
-       <!-- Tarjeta VOTACION -->
-
-<div class="card">
-  <div>
-    <div style="
-      display: inline-block;
-      background: #e53935;
-      color: white;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    ">
-      🆕 NUEVO
-    </div>
-
-    <div class="icon-wrapper">🗳️</div>
-
-    <h2>Programación de Compensatorio de Votaciones</h2>
-
-    <p>
-      Los funcionarios que participaron en la jornada electoral y ejercieron
-      su derecho al voto podrán diligenciar el formulario para programar su
-      1/2 jornada de  compensatorio. Consulte también la planilla de asignaciones y
-      seguimiento.
-    </p>
-  </div>
-
-  <div class="actions">
-    <a
-      href="https://docs.google.com/forms/d/e/1FAIpQLSeyVyE-EqgT1IGfEYH9ug3w4Vhp0-tEMnVutZsk8poDoolkZw/viewform?usp=dialog"
-      class="btn"
-      target="_blank"
-    >
-      📝 Diligenciar Formulario
-    </a>
-
-    <a
-      href="https://docs.google.com/spreadsheets/d/14qx2kZ636Phru53KcsW3u3DKzmlh00iBSpryy24cwcI/edit?usp=sharing"
-      class="btn"
-      target="_blank"
-      style="
-        background: white;
-        color: #000000;
-        border: 2px solid var(--accent);
-        box-shadow: none;
-      "
-    >
-      📊 Consultar Planilla
-    </a>
-  </div>
-</div>
 
       <!-- Tarjeta 2 -->
       <div class="card">
         <div>
           <div class="icon-wrapper">📊</div>
-          <h2>Sorteo Junio 2026</h2>
+          <h2>Sorteo Agosto 2026</h2>
           <p>
             Listado oficial de funcionarios que salen a compensatorio en el mes
-            de junio  según sorteo.
+            de Agosto según sorteo.
           </p>
         </div>
         <a
@@ -321,16 +272,15 @@
           >Ver Planilla</a
         >
       </div>
-     
 
       <!-- Tarjeta 3 -->
       <div class="card">
         <div>
           <div class="icon-wrapper">✍️</div>
-          <h2>Programacion Compensatorios Julio 2026</h2>
+          <h2>Programacion Compensatorios Septiembre 2026</h2>
           <p>
             Registrate aqui para participar en los turnos de compensatorio del
-            mes de julio.
+            mes de septiembre.
           </p>
         </div>
         <div class="actions">
@@ -350,12 +300,10 @@
               box-shadow: none;
             "
           >
-            Planilla Julio
+            Planilla septiembre
           </a>
         </div>
       </div>
-
-  
 
       <!-- Tarjeta 4 -->
       <div class="card">
@@ -377,12 +325,13 @@
       &copy; 2026 Sistema de Gestión Integral <br />
       Desarrollado para el personal de la Compañía Córdoba
     </footer>
-<!-- 2. El script va aquí, justo antes de cerrar la etiqueta </body> -->
+
     <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js')
-          .then(reg => console.log('Registro de SW exitoso', reg))
-          .catch(err => console.warn('Error al registrar SW', err));
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("./sw.js")
+          .then((reg) => console.log("Registro de SW exitoso", reg))
+          .catch((err) => console.warn("Error al registrar SW", err));
       }
     </script>
   </body>
